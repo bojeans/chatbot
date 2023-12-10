@@ -46,15 +46,22 @@ const TextBox = ({ showSpeechBubble, userName }) => {
 
   return (
     showSpeechBubble && (
-      <div className="speech-bubble">
-        <div className="speech-text">{displayText}</div>
+      <div className="relative bg-white p-4 rounded-lg shadow-md max-w-sm w-full mx-auto mt-4">
+        <div className="speech-text mb-4">{displayText}</div>
         <input
           type="text"
+          className="border p-2 rounded w-full"
           placeholder="Your response..."
           value={userInput}
           onChange={handleUserInput}
+          onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
         />
-        <button onClick={handleSendMessage}>Send</button>
+        <button
+          onClick={handleSendMessage}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
+        >
+          Send
+        </button>
       </div>
     )
   );

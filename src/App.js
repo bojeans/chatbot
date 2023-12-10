@@ -13,7 +13,7 @@ const App = () => {
   return (
     <>
       <div>
-        <p>Click on the robot to start chatting!</p>
+        <p>Click on the floating robot to start chatting!</p>
       </div>
       <div
         data-testid="idForTesting"
