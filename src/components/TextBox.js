@@ -1,18 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
-const TextBox = ({ showSpeechBubble }) => {
+const TextBox = ({ showSpeechBubble, userName }) => {
   const [displayText, setDisplayText] = useState("");
   const [userInput, setUserInput] = useState("");
+  const interval = useRef();
 
   // Function to display text character by character
   const displayTextCharacterByCharacter = (text) => {
     let index = 0;
-    const interval = setInterval(() => {
+    interval.current = setInterval(() => {
       if (index < text.length) {
         setDisplayText((prevText) => prevText + text.charAt(index));
         index++;
       } else {
-        clearInterval(interval);
+        clearInterval(interval.current);
       }
     }, 100); // Adjust the interval as needed
   };
@@ -22,11 +23,26 @@ const TextBox = ({ showSpeechBubble }) => {
   };
 
   const handleSendMessage = () => {
+    let response = "";
     // Handle user input and generate chatbot response here
     // For this example, let's echo the user's input
-    displayTextCharacterByCharacter(`You: ${userInput}\nChatbot: ${userInput}`);
+    if (userInput.toLowerCase().includes("hello")) {
+      response = "Hello! How can I help you?";
+    } else {
+      response = `You said: ${userInput}`;
+    }
+    displayTextCharacterByCharacter(`You: ${userInput}\nChatbot: ${response}`);
     setUserInput("");
   };
+
+  useEffect(() => {
+    if (userName) {
+      displayTextCharacterByCharacter(`Chatbot: ${userName}`);
+    }
+    return () => {
+      clearInterval(interval);
+    };
+  }, [userName]);
 
   return (
     showSpeechBubble && (
