@@ -21,7 +21,9 @@ const App = () => {
   return (
     <>
       <div>
-        <p>{title}</p>
+        <h1 className="text-shadow text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-400 md:mb-5 leading-normal md:leading-relaxed">
+          {title}
+        </h1>
       </div>
       <div
         data-testid="idForTesting"
@@ -31,7 +33,7 @@ const App = () => {
           src={Robot}
           alt="chatbot"
           arialabel="start chatting with the chatbot"
-          className="w-1/2 h-auto cursor-pointer floating-animation"
+          className="w-1/2 md:w-1/3 lg:w-1/4 h-auto cursor-pointer floating-animation"
           onClick={handleStartChat}
         />
         <TextBox showSpeechBubble={showSpeechBubble} message={initialMessage} />
