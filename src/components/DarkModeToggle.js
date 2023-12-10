@@ -1,6 +1,5 @@
 import React from "react";
 import { useDarkMode } from "./DarkModeContext";
-
 import { MdOutlineDarkMode } from "react-icons/md";
 import { IoSunnyOutline } from "react-icons/io5";
 
@@ -16,12 +15,18 @@ const DarkModeToggle = () => {
   }, [darkMode]);
 
   return (
-    <button
-      className={`dark-mode-toggle ${darkMode ? "dark" : "light"}`}
-      onClick={toggleDarkMode}
-    >
-      {darkMode ? <IoSunnyOutline /> : <MdOutlineDarkMode />}
-    </button>
+    <div className="flex justify-center items-center h-screen">
+      <button
+        className={`dark-mode-toggle ${darkMode ? "dark" : "light"} p-2`}
+        onClick={toggleDarkMode}
+      >
+        {darkMode ? (
+          <IoSunnyOutline className="text-4xl" />
+        ) : (
+          <MdOutlineDarkMode className="text-4xl" />
+        )}
+      </button>
+    </div>
   );
 };
 
