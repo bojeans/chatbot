@@ -23,28 +23,32 @@ const App = () => {
 
   return (
     <DarkModeProvider>
-      <div>
-        <DarkModeToggle />
-        <h1 className="text-shadow text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-400 dark:from-gray-700 dark:to-gray-500 md:mb-5 leading-normal md:leading-relaxed">
-          {title}
-        </h1>
-
-        <div
-          data-testid="idForTesting"
-          className="main flex justify-center items-center h-screen"
-        >
+      <div className="flex flex-col h-screen">
+        <div className="flex-none">
+          {" "}
+          {/* Non-expanding toggle */}
+          <DarkModeToggle />
+        </div>
+        <div className="flex-grow flex flex-col justify-center items-center p-4 space-y-4">
+          {" "}
+          {/* Main content area */}
+          <h1 className="text-center text-2xl md:text-4xl font-bold dark:text-white">
+            {title}
+          </h1>
           <img
             src={Robot}
             alt="chatbot"
-            aria-label="start chatting with the chatbot"
-            className="w-1/2 md:w-1/3 lg:w-1/4 h-auto cursor-pointer floating-animation"
+            className="w-1/2 md:w-1/3 lg:w-1/4 h-auto cursor-pointer"
             onClick={handleStartChat}
           />
-          <TextBox
-            showSpeechBubble={showSpeechBubble}
-            message={initialMessage}
-          />
         </div>
+        {showSpeechBubble && (
+          <div className="flex-none">
+            {" "}
+            {/* TextBox area */}
+            <TextBox message={initialMessage} />
+          </div>
+        )}
       </div>
     </DarkModeProvider>
   );

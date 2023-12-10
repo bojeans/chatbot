@@ -15,13 +15,13 @@ const DarkModeToggle = () => {
   }, [darkMode]);
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center p-1">
       <button
         className={`dark-mode-toggle ${darkMode ? "dark" : "light"} p-2`}
         onClick={toggleDarkMode}
       >
         {darkMode ? (
-          <IoSunnyOutline className="text-4xl" />
+          <IoSunnyOutline className="text-4xl dark:text-yellow-300" />
         ) : (
           <MdOutlineDarkMode className="text-4xl" />
         )}

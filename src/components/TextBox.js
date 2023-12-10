@@ -52,30 +52,31 @@ const TextBox = ({ showSpeechBubble, message }) => {
       displayTextCharacterByCharacter(` ${message}`);
     }
   }, [message]);
-  useEffect(() => {
-    console.log("displayText updated:", displayText);
-  }, [displayText]);
+
+  if (!showSpeechBubble) {
+    return null;
+  }
 
   return (
-    showSpeechBubble && (
-      <div className="relative bg-white dark:bg-gray-700 p-2 rounded-lg shadow-md max-w-md w-full mx-auto mt-4">
-        <div className="speech-text mb-4 overflow-auto">{displayText}</div>
-        <input
-          type="text"
-          className="border p-2 rounded w-full"
-          placeholder="Your response..."
-          value={userInput}
-          onChange={handleUserInput}
-          onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
-        />
-        <button
-          onClick={handleSendMessage}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
-        >
-          Send
-        </button>
+    <div className="relative bg-white dark:bg-gray-700 p-2 rounded-lg shadow-md max-w-md w-full mx-auto mt-4">
+      <div className="speech-text mb-4 overflow-auto max-h-32">
+        {displayText}
       </div>
-    )
+      <input
+        type="text"
+        className="border p-2 rounded w-full"
+        placeholder="Your response..."
+        value={userInput}
+        onChange={handleUserInput}
+        onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
+      />
+      <button
+        onClick={handleSendMessage}
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
+      >
+        Send
+      </button>
+    </div>
   );
 };
 
