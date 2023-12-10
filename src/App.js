@@ -9,7 +9,7 @@ const App = () => {
   const handleStartChat = () => {
     setShowSpeechBubble(true);
     setInitialMessage(
-      `Hi there! I'm your "friendly" chatbot. What's your name?`
+      ` Hi there! I'm your "friendly" chatbot. What's your name? `
     );
   };
   return (
