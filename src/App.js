@@ -4,11 +4,13 @@ import Robot from "./assets/robot.jpg";
 
 const App = () => {
   const [showSpeechBubble, setShowSpeechBubble] = useState(false);
-  const [userName, setUserName] = useState("");
+  const [initialMessage, setInitialMessage] = useState("");
 
   const handleStartChat = () => {
     setShowSpeechBubble(true);
-    setUserName("What's your name?");
+    setInitialMessage(
+      `Hi there! I'm your "friendly" chatbot. What's your name?`
+    );
   };
   return (
     <>
@@ -26,7 +28,7 @@ const App = () => {
           className="w-1/2 h-auto cursor-pointer floating-animation"
           onClick={handleStartChat}
         />
-        <TextBox showSpeechBubble={showSpeechBubble} userName={userName} />
+        <TextBox showSpeechBubble={showSpeechBubble} message={initialMessage} />
       </div>
     </>
   );

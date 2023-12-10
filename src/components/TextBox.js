@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const TextBox = ({ showSpeechBubble, userName }) => {
+const TextBox = ({ showSpeechBubble, message }) => {
   const [displayText, setDisplayText] = useState("");
+  const [personsName, setPersonsName] = useState("");
   const [userInput, setUserInput] = useState("");
+  const [nameProvided, setNameProvided] = useState(false);
   const interval = useRef();
 
   // Function to display text character by character
@@ -23,26 +25,38 @@ const TextBox = ({ showSpeechBubble, userName }) => {
   };
 
   const handleSendMessage = () => {
-    let response = "";
-    // Handle user input and generate chatbot response here
-    // For this example, let's echo the user's input
-    if (userInput.toLowerCase().includes("hello")) {
-      response = "Hello! How can I help you?";
+    if (!nameProvided) {
+      setNameProvided(true);
+      setPersonsName(userInput);
+      displayTextCharacterByCharacter(`How are you today ${userInput}?`);
     } else {
-      response = `You said: ${userInput}`;
+      // Logic to handle further conversation
+      // Example: Check if the response matches any word in positive or negative arrays
+      const positive = ["great", "good", "fantastic", "wonderful"];
+      const negative = ["okay", "ok", "bad", "not good"];
+      let response = "";
+      // Handle user input and generate chatbot response here
+      // For this example, let's echo the user's input
+      if (positive.includes(userInput.toLowerCase())) {
+        response = `That's awesome! How can I assist you today ${personsName}?`;
+      } else if (negative.includes(userInput.toLowerCase())) {
+        response = `I'm sorry to hear that. How can I help make your day better ${personsName}?`;
+      } else {
+        response = `Interesting! Tell me more.${personsName}`;
+      }
+      displayTextCharacterByCharacter(`${userInput}\nChatbot: ${response}`);
+      setUserInput("");
     }
-    displayTextCharacterByCharacter(`You: ${userInput}\nChatbot: ${response}`);
-    setUserInput("");
   };
 
   useEffect(() => {
-    if (userName) {
-      displayTextCharacterByCharacter(`Chatbot: ${userName}`);
+    if (message) {
+      displayTextCharacterByCharacter(`Chatbot: ${message}`);
     }
     return () => {
-      clearInterval(interval);
+      clearInterval(interval.current);
     };
-  }, [userName]);
+  }, [message]);
 
   return (
     showSpeechBubble && (
