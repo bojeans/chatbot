@@ -13,7 +13,7 @@ const TextBox = ({ showSpeechBubble, message }) => {
     const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
     for (let char of text) {
-      await delay(100); // Wait for 100ms
+      await delay(50);
       setDisplayText((prevText) => prevText + char);
     }
   };
