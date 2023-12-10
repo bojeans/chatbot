@@ -8,6 +8,7 @@ const App = () => {
   const [title, setTitle] = useState(
     "Click on the floating robot to start chatting!"
   );
+  const [darkMode, setDarkMode] = useState(false);
 
   const handleStartChat = () => {
     setShowSpeechBubble(true);
@@ -18,13 +19,27 @@ const App = () => {
       ` Hi there! I'm your "friendly" chatbot. What's your name? `
     );
   };
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
-    <>
-      <div>
-        <h1 className="text-shadow text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-400 md:mb-5 leading-normal md:leading-relaxed">
-          {title}
-        </h1>
-      </div>
+    <div
+      className={`${
+        darkMode ? "dark" : ""
+      } "relative bg-green-500 dark:bg-gray-700 p-2 rounded-lg shadow-md max-w-md w-full mx-auto mt-4"`}
+    >
+      <button
+        onClick={toggleDarkMode}
+        className="bg-white dark:bg-gray-800 text-black dark:text-white p-2 rounded"
+      >
+        {darkMode ? "Light Mode" : "Dark Mode"}
+      </button>
+      <h1 className="text-shadow text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-teal-400 dark:from-gray-700 dark:to-gray-500 md:mb-5 leading-normal md:leading-relaxed">
+        {title}
+      </h1>
+
       <div
         data-testid="idForTesting"
         className="main flex justify-center items-center h-screen"
@@ -32,13 +47,13 @@ const App = () => {
         <img
           src={Robot}
           alt="chatbot"
-          arialabel="start chatting with the chatbot"
+          aria-label="start chatting with the chatbot"
           className="w-1/2 md:w-1/3 lg:w-1/4 h-auto cursor-pointer floating-animation"
           onClick={handleStartChat}
         />
         <TextBox showSpeechBubble={showSpeechBubble} message={initialMessage} />
       </div>
-    </>
+    </div>
   );
 };
 

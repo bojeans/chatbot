@@ -58,7 +58,7 @@ const TextBox = ({ showSpeechBubble, message }) => {
 
   return (
     showSpeechBubble && (
-      <div className="relative bg-white p-2 rounded-lg shadow-md max-w-md w-full mx-auto mt-4">
+      <div className="relative bg-white dark:bg-gray-700 p-2 rounded-lg shadow-md max-w-md w-full mx-auto mt-4">
         <div className="speech-text mb-4 overflow-auto">{displayText}</div>
         <input
           type="text"
