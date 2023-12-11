@@ -8,14 +8,16 @@ const TextBox = ({ showSpeechBubble, message }) => {
 
   // Function to display text character by character
   const displayTextCharacterByCharacter = async (text) => {
-    setDisplayText("");
+    let accumulatedText = ""; // Local variable to accumulate text
 
     const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
     for (let char of text) {
-      await delay(50);
-      setDisplayText((prevText) => prevText + char);
+      await delay(5);
+      accumulatedText += char; // Append char to the local variable
     }
+
+    setDisplayText(accumulatedText); // Update state once after loop
   };
 
   const handleUserInput = (e) => {
@@ -48,14 +50,11 @@ const TextBox = ({ showSpeechBubble, message }) => {
   };
 
   useEffect(() => {
+    console.log("message:", message);
     if (message) {
-      displayTextCharacterByCharacter(` ${message}`);
+      displayTextCharacterByCharacter(message);
     }
   }, [message]);
-
-  if (!showSpeechBubble) {
-    return null;
-  }
 
   return (
     <div className="relative bg-white dark:bg-gray-700 p-2 rounded-lg shadow-md max-w-md w-full mx-auto mt-4">

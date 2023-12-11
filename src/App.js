@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TextBox from "./components/TextBox";
 import Robot from "./assets/robot.jpg";
 import DarkModeToggle from "./components/DarkModeToggle";
@@ -25,13 +25,9 @@ const App = () => {
     <DarkModeProvider>
       <div className="flex flex-col h-screen">
         <div className="flex-none">
-          {" "}
-          {/* Non-expanding toggle */}
           <DarkModeToggle />
         </div>
         <div className="flex-grow flex flex-col justify-center items-center p-4 space-y-4">
-          {" "}
-          {/* Main content area */}
           <h1 className="text-center text-2xl md:text-4xl font-bold dark:text-white">
             {title}
           </h1>
@@ -44,8 +40,6 @@ const App = () => {
         </div>
         {showSpeechBubble && (
           <div className="flex-none">
-            {" "}
-            {/* TextBox area */}
             <TextBox message={initialMessage} />
           </div>
         )}
