@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import TextBox from "./components/TextBox";
 import Robot from "./assets/robot.jpg";
 import DarkModeToggle from "./components/DarkModeToggle";
