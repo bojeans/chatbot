@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDarkMode } from "./DarkModeContext";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { IoSunnyOutline } from "react-icons/io5";
@@ -6,7 +6,7 @@ import { IoSunnyOutline } from "react-icons/io5";
 const DarkModeToggle = () => {
   const { darkMode, toggleDarkMode } = useDarkMode();
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (darkMode) {
       document.body.classList.add("dark-mode");
     } else {

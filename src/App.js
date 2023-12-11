@@ -23,23 +23,23 @@ const App = () => {
 
   return (
     <DarkModeProvider>
-      <div className="flex flex-col h-screen">
-        <div className="flex-none">
+      <div className="flex flex-col p-4">
+        <div className="flex-none mb-3">
           <DarkModeToggle />
         </div>
         <div className="flex-grow flex flex-col justify-center items-center p-4 space-y-4">
-          <h1 className="text-center text-2xl md:text-4xl font-bold dark:text-white">
+          <h1 className="text-2xl mb-12 md:text-4xl font-bold dark:text-white">
             {title}
           </h1>
           <img
             src={Robot}
             alt="chatbot"
-            className="w-1/2 md:w-1/3 lg:w-1/4 h-auto cursor-pointer"
+            className="robot-image w-1/2 md:w-1/3 lg:w-1/4 h-auto cursor-pointer"
             onClick={handleStartChat}
           />
         </div>
         {showSpeechBubble && (
-          <div className="flex-none">
+          <div className="flex-none p-8">
             <TextBox message={initialMessage} />
           </div>
         )}
