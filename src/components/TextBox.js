@@ -29,11 +29,13 @@ const TextBox = ({ showSpeechBubble, message }) => {
       setNameProvided(true);
       setPersonsName(userInput);
       displayTextCharacterByCharacter(` How are you today ${userInput}?`);
+      setUserInput("");
     } else {
       // Logic to handle further conversation
       // Example: Check if the response matches any word in positive or negative arrays
       const positive = ["great", "good", "fantastic", "wonderful"];
-      const negative = ["okay", "ok", "bad", "not good"];
+      const neutral = ["okay", "ok", "fine", "alright"];
+      const negative = ["bad", "not good", "terrible", "horrible"];
       const reset = ["reset", "start over", "restart", "begin again"];
       const help = ["help", "assist", "support", "guide", "?"];
 
@@ -42,6 +44,8 @@ const TextBox = ({ showSpeechBubble, message }) => {
       // For this example, let's echo the user's input
       if (positive.includes(userInput.toLowerCase())) {
         response = ` That's awesome! How can I assist you today ${personsName}?`;
+      } else if (neutral.includes(userInput.toLowerCase())) {
+        response = `Just ${userInput} ${personsName}? Well that's good enough for me I suppose. Feel free to start again by typing 'reset'.`;
       } else if (negative.includes(userInput.toLowerCase())) {
         response = ` I'm sorry to hear that. How can I help make your day better ${personsName}?`;
       } else if (reset.includes(userInput.toLowerCase())) {
