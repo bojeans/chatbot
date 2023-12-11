@@ -34,6 +34,9 @@ const TextBox = ({ showSpeechBubble, message }) => {
       // Example: Check if the response matches any word in positive or negative arrays
       const positive = ["great", "good", "fantastic", "wonderful"];
       const negative = ["okay", "ok", "bad", "not good"];
+      const reset = ["reset", "start over", "restart", "begin again"];
+      const help = ["help", "assist", "support", "guide", "?"];
+
       let response = "";
       // Handle user input and generate chatbot response here
       // For this example, let's echo the user's input
@@ -41,8 +44,14 @@ const TextBox = ({ showSpeechBubble, message }) => {
         response = ` That's awesome! How can I assist you today ${personsName}?`;
       } else if (negative.includes(userInput.toLowerCase())) {
         response = ` I'm sorry to hear that. How can I help make your day better ${personsName}?`;
+      } else if (reset.includes(userInput.toLowerCase())) {
+        response = ` Let's start over. What's your name?`;
+        setNameProvided(false);
+      } else if (help.includes(userInput.toLowerCase())) {
+        response = `I can help with the following:`;
+        // TODO refactor state or create a new global variable to handle when the user uses 'help' depending on where they are at in the chat.
       } else {
-        response = ` Interesting! Tell me more.${personsName}`;
+        response = `I don't understand that command ${personsName}`;
       }
       displayTextCharacterByCharacter(`${response} `);
       setUserInput("");
